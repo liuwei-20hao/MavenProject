@@ -3,6 +3,8 @@ package com.struts2.action;
 import com.opensymphony.xwork2.ActionSupport;
 
 import javax.inject.Inject;
+
+import com.opensymphony.xwork2.ModelDriven;
 import com.struts2.entity.Customer;
 import com.struts2.service.CustomerService;
 import com.struts2.service.impl.CustomerServiceImpl;
@@ -10,12 +12,13 @@ import org.apache.struts2.ServletActionContext;
 
 import java.util.List;
 
-public class CustomerAction extends ActionSupport {
-    @Inject
-    private CustomerService customerService;
+public class CustomerAction extends ActionSupport implements ModelDriven<Customer>{
+
+    private Customer customer =new Customer();
     public String add(){
-        System.out.println("add");
-        return "success";
+        CustomerService customerService = new CustomerServiceImpl();
+        customerService.addCustomer(customer);
+        return "tolist";
     }
     public String del(){
         System.out.println("del");
@@ -26,10 +29,14 @@ public class CustomerAction extends ActionSupport {
         return "success";
     }
     public String get(){
+        String name = ServletActionContext.getRequest().getParameter("cust_name");
         CustomerService customerService = new CustomerServiceImpl();
-        List<Customer> cus = customerService.getCustomer();
+        List<Customer> cus = customerService.getCustomerByName(name);
         ServletActionContext.getRequest().setAttribute("list",cus);
-        System.out.println(cus);
         return "list";
+    }
+
+    public Customer getModel() {
+        return customer;
     }
 }

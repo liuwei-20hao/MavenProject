@@ -20,7 +20,7 @@ public class Customer {
     ) ENGINE=MyISAM AUTO_INCREMENT=149 DEFAULT CHARSET=utf8;
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator="payablemoney_gen")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long cust_id;
 
     private String cust_name;
@@ -97,8 +97,13 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer [cust_id=" + cust_id + ", cust_name=" + cust_name + "]";
+        return "Customer{" +
+                "cust_name='" + cust_name + '\'' +
+                ", cust_source='" + cust_source + '\'' +
+                ", cust_level='" + cust_level + '\'' +
+                ", cust_linkman='" + cust_linkman + '\'' +
+                ", cust_phone='" + cust_phone + '\'' +
+                ", cust_mobile='" + cust_mobile + '\'' +
+                '}';
     }
-
-
 }

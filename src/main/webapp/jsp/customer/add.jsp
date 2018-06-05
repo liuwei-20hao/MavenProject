@@ -15,7 +15,7 @@
 </HEAD>
 <BODY>
 <FORM id=form1 name=form1
-	  action="<%=request.getContextPath()%>/AddCustomerServlet"
+	  action="<%=request.getContextPath()%>/customer/CustomerAction_add"
 	  method=post>
 
 
