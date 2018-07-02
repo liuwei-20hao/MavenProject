@@ -1,7 +1,7 @@
 package com.struts2.dao;
 
 import com.struts2.entity.Customer;
-import com.struts2.entity.User;
+import com.spring.entity.User;
 
 import java.util.List;
 

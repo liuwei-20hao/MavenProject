@@ -1,8 +1,10 @@
 package com.struts2.entity;
 
+import javax.inject.Named;
 import javax.persistence.*;
 
 @Entity
+@Named
 @Table(name="cst_customer")
 public class Customer {
 

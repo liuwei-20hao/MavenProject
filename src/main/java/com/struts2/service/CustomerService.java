@@ -1,7 +1,7 @@
 package com.struts2.service;
 
 import com.struts2.entity.Customer;
-import com.struts2.entity.User;
+import com.spring.entity.User;
 
 import java.util.List;
 
@@ -17,4 +17,5 @@ public interface CustomerService {
     public void modCustomer(Customer c);
 
     public User login(User u);
+
 }

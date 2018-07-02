@@ -3,13 +3,17 @@ package com.struts2.service.impl;
 import com.struts2.dao.CustomerDao;
 import com.struts2.dao.impl.CustomerDaoImpl;
 import com.struts2.entity.Customer;
-import com.struts2.entity.User;
+import com.spring.entity.User;
 import com.struts2.service.CustomerService;
+import org.springframework.stereotype.Service;
 
+import javax.inject.Inject;
 import java.util.List;
-
+@Service("customerService")
 public class CustomerServiceImpl implements CustomerService {
+    @Inject
     private CustomerDao customerDao;
+
     public List<Customer> getCustomer() {
         CustomerDao customerDao = new CustomerDaoImpl();
         return customerDao.getCustomer();

@@ -3,15 +3,14 @@ package com.struts2.dao.impl;
 import com.struts2.HibernateUtils;
 import com.struts2.dao.CustomerDao;
 import com.struts2.entity.Customer;
-import com.struts2.entity.User;
+import com.spring.entity.User;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.*;
-import org.springframework.jdbc.object.SqlQuery;
-import org.springframework.test.context.jdbc.Sql;
 
+import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
-
+@Named
 public class CustomerDaoImpl implements CustomerDao{
     private SessionFactory sessionFactory;
     public List<Customer> getCustomer() {

@@ -2,6 +2,9 @@ package com.struts2.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import javax.inject.Named;
+
+
 public class DemoAction extends ActionSupport{
     public String add(){
         System.out.println("add");

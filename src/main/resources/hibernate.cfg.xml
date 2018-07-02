@@ -66,7 +66,7 @@
 		<mapping resource="cn/itheima/domain/LinkMan.hbm.xml" />
 		 -->
         <mapping class="com.struts2.entity.Customer"/>
-		<mapping class="com.struts2.entity.User"/>
+		<mapping class="com.spring.entity.User"/>
 		
 	</session-factory>
 </hibernate-configuration>
