@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,10 +39,20 @@ public class UserMapperTest {
         /*QueryVo queryVoById = mapper.findQueryVoById(1);
         System.out.println(queryVoById.getUser().toString());*/
 
-        User u = new User();
+        /*User u = new User();
         u.setUsername("lw");
         u.setId(1);
         User ud = mapper.findUserByIdAndName(u);
-        System.out.println(ud);
+        System.out.println(ud);*/
+
+       QueryVo q = new QueryVo();
+       List<Integer> l = new ArrayList<Integer>();
+       l.add(1);
+       l.add(16);
+       q.setIds(l);
+       List<User> ud =mapper.findQueryVoByIds(q);
+       for (User u:ud){
+           System.out.println(u);
+       }
     }
 }

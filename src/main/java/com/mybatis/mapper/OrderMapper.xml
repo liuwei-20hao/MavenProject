@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 写Sql语句   -->
+<mapper namespace="com.mybatis.mapper.OrderMapper">
+	
+	<select id="selectOrdersList" resultType="com.mybatis.entity.Order">
+		SELECT * FROM orders
+	</select>
+	
+	<!-- 
+		//一对一关联 查询  以订单为中心 关联用户
+	public List<Orders> selectOrders();
+	 -->
+	<select id="selectOrders" resultMap="OrderResultMap">
+		select * from orders o left join user u on u.id=o.userid
+	</select>
+
+	<resultMap type="com.mybatis.entity.Order" id="OrderResultMap" >
+			<id property="id" column="id"></id>
+			<result property="userId" column="userId"></result>
+			<result property="number" column="number"></result>
+			<result property="createtime" column="createtime"></result>
+			<result property="note" column="note"></result>
+			<association property="user" javaType="com.mybatis.entity.User">
+					<id property="id" column="id"></id>
+					<result property="username" column="username"></result>
+					<result property="sex" column="sex"></result>
+					<result property="birthday" column="birthday"></result>
+					<result property="address" column="address"></result>
+		</association>
+	</resultMap>
+	 <!-- 
+	 
+	 	//一对多关联
+	public List<User> selectUserList(); -->
+	<select id="selectUserList" resultMap="UserListResultMap">
+		select * from user u left join orders o on u.id=o.userid
+	</select>
+	<resultMap id="UserListResultMap" type="com.mybatis.entity.User">
+		<id property="id" column="id"></id>
+		<result property="username" column="username"></result>
+		<result property="sex" column="sex"></result>
+		<result property="birthday" column="birthday"></result>
+		<result property="address" column="address"></result>
+		<collection property="orders" ofType="com.mybatis.entity.Order">
+			<id property="id" column="id"></id>
+			<result property="userId" column="userId"></result>
+			<result property="number" column="number"></result>
+			<result property="createtime" column="createtime"></result>
+			<result property="note" column="note"></result>
+		</collection>
+	</resultMap>
+</mapper>

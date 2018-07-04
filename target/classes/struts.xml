@@ -5,17 +5,17 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-        <package name="login" namespace="/" extends="struts-default">
-            <action name="LoginAction_*" class="com.struts2.action.LoginAction" method="{1}">
-                <result name="toHome" type="redirect" >/index.htm</result>
-                <result name="error"  >/login.jsp</result>
-            </action>
-        </package>
-        <package name="demo" namespace="/" extends="struts-default">
-            <action name="DemoAction*" class="com.struts2.action.DemoAction" method="{1}">
-                <result name="list">/jsp/customer/list.jsp</result>
-            </action>
-        </package>
+       <!-- <package name="login" namespace="/" extends="struts-default">
+    &lt;!&ndash;<action name="LoginAction_*" class="com.struts2.action.LoginAction" method="{1}">
+        <result name="toHome" type="redirect" >/index.htm</result>
+        <result name="error"  >/login.jsp</result>
+    </action>
+</package>
+    <package name="demo" namespace="/" extends="struts-default">
+        <action name="DemoAction*" class="com.struts2.action.DemoAction" method="{1}">
+            <result name="list">/jsp/customer/list.jsp</result>
+        </action>
+    </package>
     <package name="customer" namespace="/customer" extends="struts-default">
         <action name="CustomerAction_*" class="com.struts2.action.CustomerAction" method="{1}">
             <result name="list">/jsp/customer/list.jsp</result>
@@ -23,6 +23,6 @@
                 <param name="actionName">CustomerAction_get</param>
                 <param name="namespace">/customer</param>
             </result>
-        </action>
-    </package>
+        </action>&ndash;&gt;
+    </package>-->
 </struts>

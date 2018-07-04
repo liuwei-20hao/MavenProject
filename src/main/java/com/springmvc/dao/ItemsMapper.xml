@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 写Sql语句   -->
+<mapper namespace="com.springmvc.dao.ItemsMapper">
+	
+	<select id="getItemsList" resultType="com.springmvc.entity.Items">
+	  SELECT * FROM items
+	</select>
+
+	<select id="getItemsById" resultType="com.springmvc.entity.Items">
+		SELECT * FROM items where id = #{id}
+	</select>
+
+	<update id="updateItems" parameterType="com.springmvc.entity.Items" >
+		update items
+		set name = #{name,jdbcType=VARCHAR},
+		price = #{price,jdbcType=REAL},
+		pic = #{pic,jdbcType=VARCHAR},
+		time = #{time,jdbcType=TIMESTAMP},
+		detail = #{detail,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+</mapper>

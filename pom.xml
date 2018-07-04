@@ -17,7 +17,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <junit.version>4.9</junit.version>
     <spring.version>4.3.10.RELEASE</spring.version>
-    <struts.version>2.3.16</struts.version>
+    <!--<struts.version>2.3.16</struts.version>-->
     <mybatis.version>3.4.4</mybatis.version>
     <mybatis.spring.version>1.3.1</mybatis.spring.version>
     <hibernate.version>3.6.10.Final</hibernate.version>
@@ -101,7 +101,7 @@
     <artifactId>mybatis-spring</artifactId>
     <version>${mybatis.spring.version}</version>
   </dependency>
-    <!-- Struts2 核心依赖 -->
+   <!-- &lt;!&ndash; Struts2 核心依赖 &ndash;&gt;
     <dependency>
       <groupId>org.apache.struts</groupId>
       <artifactId>struts2-core</artifactId>
@@ -117,12 +117,12 @@
       <artifactId>struts2-json-plugin</artifactId>
       <version>${struts.version}</version>
     </dependency>
-    <!-- xwork -->
+    &lt;!&ndash; xwork &ndash;&gt;
     <dependency>
       <groupId>org.apache.struts.xwork</groupId>
       <artifactId>xwork-core</artifactId>
       <version>${struts.version}</version>
-    </dependency>
+    </dependency>-->
   <!-- 导入Mysql数据库链接jar包 -->
   <dependency>
     <groupId>mysql</groupId>
@@ -160,9 +160,19 @@
     <artifactId>fastjson</artifactId>
     <version>${fastjson.version}</version>
   </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>2.5.2</version>
+    </dependency>
 
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.5.2</version>
+    </dependency>
 
-  <dependency>
+    <dependency>
     <groupId>org.slf4j</groupId>
     <artifactId>slf4j-api</artifactId>
     <version>${slf4j.version}</version>
@@ -232,6 +242,25 @@
   </dependencies>
 
   <build>
+      <!-- 如果不添加此节点mybatis的mapper.xml文件都会被漏掉。 -->
+      <resources>
+          <resource>
+              <directory>src/main/java</directory>
+              <includes>
+                  <include>**/*.properties</include>
+                  <include>**/*.xml</include>
+              </includes>
+              <filtering>false</filtering>
+          </resource>
+          <resource>
+              <directory>src/main/resources</directory>
+              <includes>
+                  <include>**/*.properties</include>
+                  <include>**/*.xml</include>
+              </includes>
+              <filtering>false</filtering>
+          </resource>
+      </resources>
     <finalName>MavenProject</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
@@ -266,14 +295,5 @@
         </plugin>
       </plugins>
     </pluginManagement>
-
-    <resources>
-      <resource>
-        <directory>src/main/java</directory>
-        <includes>
-          <include>**/*.xml</include>
-        </includes>
-      </resource>
-    </resources>
   </build>
 </project>
