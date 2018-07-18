@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：命名空间，用于隔离sql，还有一个很重要的作用，后面会讲 -->
+<mapper namespace="test">
+    <select id="queryUser" resultType="com.mybatis.entity.User">
+        SELECT * FROM `user`
+    </select>
+
+    <select id="queryUserNameById" resultType="String" parameterType="int">
+        SELECT u.username FROM user u where u.id = #{id}
+    </select>
+
+    <insert id="saveUser"  parameterType="com.mybatis.entity.User">
+        <!-- selectKey 标签实现主键返回 -->
+        <!-- keyColumn:主键对应的表中的哪一列 -->
+        <!-- keyProperty：主键对应的pojo中的哪一个属性 -->
+        <!-- order：设置在执行insert语句前执行查询id的sql，孩纸在执行insert语句之后执行查询id的sql -->
+        <!-- resultType：设置返回的id的类型 -->
+        <selectKey keyColumn="id" keyProperty="id" order="AFTER"
+                   resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into user(username,birthday,sex,address) VALUES (#{username},#{birthday},#{sex},#{address})
+    </insert>
+
+    <update id="updateById" parameterType="com.mybatis.entity.User">
+        update user set username = #{username},sex = #{sex},birthday = #{birthday},address = #{address} where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="int">
+        DELETE  from user  where id = #{id}
+    </delete>
+</mapper>

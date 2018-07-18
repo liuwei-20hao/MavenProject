@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：命名空间，用于隔离sql，还有一个很重要的作用，后面会讲 -->
+<mapper namespace="com.mybatis.mapper.UserMapper">
+    <select id="findUserById" resultType="com.mybatis.entity.User" parameterType="int">
+        SELECT * FROM user u where u.id = #{id}
+    </select>
+
+    <select id="findUserByQueryVo" resultType="com.mybatis.entity.User" parameterType="com.mybatis.entity.QueryVo">
+        SELECT * FROM user u where u.username like  "%"#{user.username}"%"
+    </select>
+
+    <select id="countUser" resultType="int">
+        SELECT count(*) FROM user
+    </select>
+
+    <select id="findQueryVoById" resultMap="userListResultMap" parameterType="int">
+        SELECT * FROM user u where u.id = #{id}
+    </select>
+
+    <resultMap type="com.mybatis.entity.QueryVo" id="userListResultMap" >
+        <association property="user" javaType="com.mybatis.entity.User" resultMap="userMap">
+        </association>
+    </resultMap>
+
+    <resultMap type="com.mybatis.entity.User" id="userMap">
+        <id property="id" column="id"></id>
+        <result property="username" column="username"></result>
+        <result property="sex" column="sex"></result>
+        <result property="birthday" column="birthday"></result>
+        <result property="address" column="address"></result>
+    </resultMap>
+
+    <select id="findUserByIdAndName" resultType="com.mybatis.entity.User" parameterType="com.mybatis.entity.User">
+        SELECT * FROM user u where 1=1
+        <if test="id != null and id !=''">
+            and u.id = #{id}
+        </if>
+        <if test="username != null and username !=''">
+           and  u.username = #{username}
+        </if>
+    </select>
+
+    <select id="findQueryVoByIds" resultType="com.mybatis.entity.User" parameterType="com.mybatis.entity.QueryVo">
+        SELECT * FROM user u
+        <where>
+        id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+        </where>
+    </select>
+</mapper>
